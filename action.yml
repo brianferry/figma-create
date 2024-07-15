@@ -1,0 +1,22 @@
+name: 'Figma Tokens'
+description: 'Create Figma tokens from style dictionary'
+inputs:
+  figma_file: 
+    description: 'Figma file id'
+    required: true
+  figma_token: 
+    description: 'Figma token'
+    required: true
+  style_dictionary_url: 
+    description: 'Style dictionary url'
+    required: true
+  collections: 
+    description: 'Collections'
+    required: false
+    default: '{"semantic": {"name": "Semantic Colors", "modeId": "semantic-light", "secondaryModeId": "semantic-dark"}, "default": {"name": "General", "modeId": "default"}}'
+outputs:
+  figma_tokens:
+    description: 'Figma tokens'
+runs:
+  using: 'node20'
+  main: 'index.js'

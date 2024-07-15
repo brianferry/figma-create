@@ -1,0 +1,31 @@
+on: 
+  workflow_dispatch:
+    inputs:
+      figma_file: 
+        description: 'Figma file URL'
+        required: true
+      style_dictionary_url:
+        description: 'Style dictionary URL'
+        required: true
+
+jobs:
+  first_test_job:
+    runs-on: ubuntu-latest
+    name: 'Figma Tokens'
+    env: 
+      FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Figma Tokens
+        uses: ./
+        id: 'figma_tokens'
+        with:
+          figma_file: ${{ github.event.inputs.figma_file }}
+          style_dictionary_url: ${{ github.event.inputs.style_dictionary_url }}
+          figma_token: ${{ secrets.FIGMA_TOKEN }}
+      - name: Archive Figma Tokens Payload
+        uses: actions/upload-artifact@v2
+        with:
+          name: figma-tokens
+          path: build/
