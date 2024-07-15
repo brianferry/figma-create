@@ -12,16 +12,20 @@ This action creates tokens in a Figma file from a JSON style-dictionary file.
 
 **Required** The Figma API token.
 
-### `style_dictionary`
+## `collections`
 
-**Required** The path to the JSON style-dictionary file.
+**Optional** The collections to create in the Figma file. Default `{"semantic": {"name": "Semantic Colors", "modeId": "semantic-light", "secondaryModeId": "semantic-dark"}, "default": {"name": "General", "modeId": "default"}}`.
+
+### `style_dictionary_url`
+
+**Required** The url of the style-dictionary file that will be used to create the tokens.
 
 ## Example usage
 
 ```yaml
-uses: brianferry/figma-tokens@v1
+uses: brianferry/figma-create@v1.0
 with:
   figma_file: 'your-figma-file-id'
   figma_token: ${{ secrets.FIGMA_TOKEN }}
-  style_dictionary: 'path/to/style-dictionary.json'
+  style_dictionary_url: 'https://raw.githubusercontent.com/your-repo/your-branch/style-dictionary.json'
 ```
